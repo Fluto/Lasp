@@ -188,6 +188,8 @@ namespace Lasp
                 // Stream properties
                 _stream.Format = SoundIO.Format.Float32LE;
                 _stream.Layout = _device.Layouts[0];
+                if (_device.Name.Contains("Azure Kinect Microphone Array"))
+                    _stream.Layout = SoundIO.ChannelLayout.GetBuiltin(SoundIO.ChannelLayout.Builtin._7Point0);
                 _stream.SoftwareLatency = bestLatency;
                 _stream.ReadCallback = _readCallback;
                 _stream.OverflowCallback = _overflowCallback;
